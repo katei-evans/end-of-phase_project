@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transmission Customizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Customize Your Transmission</h1>
+
+    <form id="transmissionForm">
+      <label>Transmission Type:</label>
+      <select id="type">
+        <option value="manual">Manual</option>
+        <option value="automatic">Automatic</option>
+      </select>
+
+      <label>Gears:</label>
+      <select id="gears">
+        <option value="5-speed">5-Speed</option>
+        <option value="6-speed">6-Speed</option>
+        <option value="CVT">CVT</option>
+      </select>
+
+      <label>Clutch Type:</label>
+      <input type="text" id="clutch" placeholder="e.g. Hydraulic" />
+
+      <label>Transmission Fluid:</label>
+      <input type="text" id="fluid" placeholder="e.g. ATF-4" />
+
+      <label>Custom Modifications:</label>
+      <textarea id="modifications" placeholder="e.g. Extra cooling system, race clutch"></textarea>
+
+      <button type="button" onclick="saveConfiguration()">Save Configuration</button>
+    </form>
+
+    <h2>Your Configuration (JSON)</h2>
+    <pre id="output"></pre>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
