@@ -24,6 +24,19 @@
         <option value="CVT">CVT</option>
       </select>
 
+      <label>Terrain</label>
+      <select id="terrain">
+        <option value="hilly-terrain">Hilly</option>
+        <option value="flat-terrain">Flat</option>
+        <option value="muddy">Muddy</option>
+      </select>
+
+      <label>road-condition</label>
+        <input type="text" name="road-condition" id="condition">
+    
+      <label>Distance</label>
+      <input type="distance" id="distance" placeholder="in-km">
+
       <label>Clutch Type:</label>
       <input type="text" id="clutch" placeholder="e.g. Hydraulic" />
 
@@ -36,10 +49,14 @@
       <button type="button" onclick="saveConfiguration()">Save Configuration</button>
     </form>
 
-    <h2>Your Configuration (JSON)</h2>
     <pre id="output"></pre>
+    <img id="image" src="image/gear.jpeg" alt="gear">
   </div>
 
   <script src="script.js"></script>
+  <footer id="contact">
+    <h4>CONTACT US</h4>
+    
+  </footer>
 </body>
 </html>
