@@ -1,3 +1,5 @@
+const baseUrl = 'http://localhost:4000/'
+
 document.addEventListener('DOMContentLoaded', function() {
     loadFluidOptions();
     
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function loadFluidOptions() {
-    fetch('db.json')
+    fetch(baseUrl)
       .then(response => response.json())
       .then(data => {
         const fluids = new Set();
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function updateRecommendations(terrain) {
-    fetch('db.json')
+    fetch(baseUrl)
       .then(response => response.json())
       .then(data => {
         const recommendation = data[terrain];
