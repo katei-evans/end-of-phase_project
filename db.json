@@ -1,0 +1,17 @@
+{
+    "hilly-terrain": {
+        "gears": "6-speed",
+        "fluid": "ATF-5",
+        "clutch": "Heavy-duty Clutch"
+    },
+    "flat-terrain": {
+        "gears": "5-speed",
+        "fluid": "ATF-4",
+        "clutch": "Standard Clutch"
+    },
+    "muddy": {
+        "gears": "CVT",
+        "fluid": "Synthetic ATF",
+        "clutch": "Off-road Clutch"
+    }
+}
