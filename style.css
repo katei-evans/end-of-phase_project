@@ -1,17 +1,20 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     padding: 20px;
-    transition: background 0.5s;
+    text-align: center;
+    color: white;
 }
 
+
 .container {
-    background: #fff;
+    background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     max-width: 600px;
     margin: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: black;
 }
 
 label {
@@ -22,7 +25,7 @@ label {
 
 input, select, textarea, button {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -30,26 +33,47 @@ input, select, textarea, button {
 }
 
 button {
-    background: #007bff;
+    background: #ff9800;
     color: white;
+    font-weight: bold;
     border: none;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #0056b3;
+    background: #e68900;
 }
 
 pre {
-    background: #eee;
+    background: #f4f4f4;
     padding: 10px;
     border-radius: 5px;
     font-size: 14px;
-    white-space: pre-wrap;
 }
- #image, img{
-    border-radius: 20%;
+
+#image img {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+#contact {
     display: flex;
-    image-rendering: 80%;
- }
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#contact i {
+    font-size: 24px;
+    color: #ff9800;
+    transition: 0.3s;
+}
+
+#contact i:hover {
+    transform: scale(1.2);
+    color: #e68900;
+}
