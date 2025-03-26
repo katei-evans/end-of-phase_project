@@ -1,64 +1,69 @@
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("type").addEventListener("change", function () {
-        const selectedType = this.value;
-        document.body.style.background = selectedType === "manual" ? "#f0f8ff" : "#ffe4e1";
+document.addEventListener('DOMContentLoaded', function() {
+    loadFluidOptions();
+    
+    document.getElementById('transmissionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      saveConfiguration();
     });
-
-    document.getElementById("terrain").addEventListener("change", function () {
-        fetchRecommendedSetup(this.value);
+    
+    document.getElementById('terrain').addEventListener('change', function() {
+      updateRecommendations(this.value);
     });
-
-    fetchTransmissionFluids();
-
-    document.querySelector("button").addEventListener("click", saveConfiguration);
-});
-
-function fetchRecommendedSetup(terrain) {
-    fetch("transmission-data.json")
-        .then(response => response.json())
-        .then(data => {
-            const recommendation = data[terrain];
-            if (recommendation) {
-                document.getElementById("gears").value = recommendation.gears;
-                document.getElementById("fluid").value = recommendation.fluid;
-                document.getElementById("clutch").value = recommendation.clutch;
-            }
-        })
-        .catch(error => console.error("Error fetching transmission data:", error));
-}
-
-function fetchTransmissionFluids() {
-    fetch("transmission-fluids.json")
-        .then(response => response.json())
-        .then(data => {
-            const fluidInput = document.getElementById("fluid");
-            fluidInput.setAttribute("list", "fluid-options");
-
-            let dataList = document.createElement("datalist");
-            dataList.id = "fluid-options";
-
-            data.fluids.forEach(fluid => {
-                let option = document.createElement("option");
-                option.value = fluid;
-                dataList.appendChild(option);
-            });
-
-            document.body.appendChild(dataList);
-        })
-        .catch(error => console.error("Error fetching fluid options:", error));
-}
-
-function saveConfiguration() {
+  });
+  
+  function loadFluidOptions() {
+    fetch('db.json')
+      .then(response => response.json())
+      .then(data => {
+        const fluids = new Set();
+        Object.values(data).forEach(item => {
+          if (item.fluid) fluids.add(item.fluid);
+        });
+        
+        const datalist = document.getElementById('fluid-options');
+        fluids.forEach(fluid => {
+          const option = document.createElement('option');
+          option.value = fluid;
+          datalist.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error loading fluids:', error));
+  }
+  
+  function updateRecommendations(terrain) {
+    fetch('db.json')
+      .then(response => response.json())
+      .then(data => {
+        const recommendation = data[terrain];
+        if (recommendation) {
+          document.getElementById('gears').value = recommendation.gears;
+          document.getElementById('fluid').value = recommendation.fluid;
+        }
+      })
+      .catch(error => console.error('Error loading recommendations:', error));
+  }
+  
+  function saveConfiguration() {
     const config = {
-        transmissionType: document.getElementById("type").value,
-        gears: document.getElementById("gears").value,
-        terrain: document.getElementById("terrain").value,
-        roadCondition: document.getElementById("condition").value,
-        distance: document.getElementById("distance").value,
-        clutch: document.getElementById("clutch").value,
-        fluid: document.getElementById("fluid").value,
-        modifications: document.getElementById("modifications").value.split(",").map(mod => mod.trim())
+      vehicle: {
+        make: document.getElementById('car-make').value,
+        model: document.getElementById('car-model').value
+      },
+      transmission: {
+        type: document.getElementById('type').value,
+        gears: document.getElementById('gears').value,
+        fluid: document.getElementById('fluid').value
+      },
+      usage: {
+        terrain: document.getElementById('terrain').value,
+        distance: document.getElementById('distance').value + ' km'
+      },
+      modifications: document.getElementById('modifications').value
     };
-
-    document.getElementById("output").textContent = JSON.stringify(config, null, 2);
-}
+  
+    document.getElementById('output').innerHTML = `
+      <h3>Your Configuration</h3>
+      <pre>${JSON.stringify(config, null, 2)}</pre>
+      <p>Thank you for your submission!</p>
+    `;
+  }

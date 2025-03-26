@@ -1,73 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transmission Customizer</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-  <header id="intro">
-    <h2 id="h4">KAJI TRANSMISSION MASTERS</h2>
-    <img src="image/car-engine.webp" alt="engine">
+  <header>
+    <h1>KAJI TRANSMISSION MASTERS</h1>
+    <p class="tagline">Precision Transmission Solutions Since 2005</p>
+    <img src="image/car-engine.webp" alt="Car engine">
   </header>
 
   <div class="container">
-    <h1>Customize Your Transmission</h1>
+    <section class="about-section">
+      <h2>About Our Company</h2>
+      <p>Kaji Transmission Masters has been providing top-quality transmission services for over 18 years. Our team of certified technicians specializes in:</p>
+      <ul>
+        <li>Custom transmission builds</li>
+        <li>Performance upgrades</li>
+        <li>Terrain-specific configurations</li>
+        <li>Maintenance and repairs</li>
+      </ul>
+      <p>We combine cutting-edge technology with old-school craftsmanship to deliver transmissions that are built to last.</p>
+    </section>
 
-    <form id="transmissionForm">
-      <label>Transmission Type:</label>
-      <select id="type">
-        <option value="manual">Manual</option>
-        <option value="automatic">Automatic</option>
-      </select>
-
-      <label>Gears:</label>
-      <select id="gears">
-        <option value="5-speed">5-Speed</option>
-        <option value="6-speed">6-Speed</option>
-        <option value="CVT">CVT</option>
-      </select>
-
-      <label>Terrain</label>
-      <select id="terrain">
-        <option value="hilly-terrain">Hilly</option>
-        <option value="flat-terrain">Flat</option>
-        <option value="muddy">Muddy</option>
-      </select>
-
-      <label>road-condition</label>
-        <input type="text" name="road-condition" id="condition">
+  <div class="container">
+    <h2>Customize Your Transmission</h2>
     
-      <label>Distance</label>
-      <input type="distance" id="distance" placeholder="in-km">
-
-      <label>Clutch Type:</label>
-      <input type="text" id="clutch" placeholder="e.g. Hydraulic" />
-
-      <label>Transmission Fluid:</label>
-      <input type="text" id="fluid" placeholder="e.g. ATF-4" />
-
-      <label>Custom Modifications:</label>
-      <textarea id="modifications" placeholder="e.g. Extra cooling system, race clutch"></textarea>
-
-      <button type="button" onclick="saveConfiguration()">Save Configuration</button>
+    <form id="transmissionForm">
+      <div class="form-group">
+        <label for="car-make">Car Make:</label>
+        <input type="text" id="car-make" placeholder="e.g. Toyota" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="car-model">Car Model:</label>
+        <input type="text" id="car-model" placeholder="e.g. Camry" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="type">Transmission Type:</label>
+        <select id="type" required>
+          <option value="">Select...</option>
+          <option value="manual">Manual</option>
+          <option value="automatic">Automatic</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="terrain">Primary Terrain:</label>
+        <select id="terrain" required>
+          <option value="">Select...</option>
+          <option value="hilly-terrain">Hilly</option>
+          <option value="flat-terrain">Flat</option>
+          <option value="muddy">Muddy</option>
+          <option value="highway">Highway</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="gears">Gears:</label>
+        <select id="gears" required>
+          <option value="">Select...</option>
+          <option value="5-speed">5-Speed</option>
+          <option value="6-speed">6-Speed</option>
+          <option value="CVT">CVT</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="distance">Average Distance (km):</label>
+        <input type="number" id="distance" placeholder="e.g. 15000" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="fluid">Transmission Fluid:</label>
+        <input type="text" id="fluid" list="fluid-options" placeholder="e.g. ATF-4" required>
+        <datalist id="fluid-options"></datalist>
+      </div>
+      
+      <div class="form-group">
+        <label for="modifications">Custom Modifications:</label>
+        <textarea id="modifications" placeholder="e.g. Extra cooling system"></textarea>
+      </div>
+      
+      <button type="submit">Save Configuration</button>
     </form>
-
-    <pre id="output"></pre>
-    <img id="image" src="image/gear.jpeg" alt="gear">
+    
+    <div id="output" class="output-box"></div>
+    <img id="car" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Transmission system">
   </div>
 
-  <script src="script.js"></script>
-  <footer id="contact">
-    <h4>CONTACT US</h4>
-    <div id="icons">
-      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+  <footer>
+    <h3>CONTACT US</h3>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
-    
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
