@@ -1,4 +1,4 @@
-const baseUrl = 'https://end-of-phase-project-cyan.vercel.app/'
+const baseUrl = 'https://project-server-psi.vercel.app/'
 
 document.addEventListener('DOMContentLoaded', function() {
     loadFluidOptions();
